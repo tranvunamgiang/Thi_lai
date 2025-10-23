@@ -123,7 +123,7 @@ public class MySqlDishRepository implements DishRepository {
             // 6. start_date (LocalDate -> Date)
             ps.setDate(6, dish.getStartDate());
             // 7. modified_date (LocalDateTime -> Timestamp)
-            ps.setTimestamp(7, dish.getModifiedDate());
+            ps.setDate(7, dish.getModifiedDate());
             // 8. status
             ps.setString(8, dish.getStatus());
 
@@ -160,7 +160,7 @@ public class MySqlDishRepository implements DishRepository {
             // 5. price
             ps.setDouble(5, dish.getPrice());
             // 6. modified_date
-            ps.setTimestamp(6, Timestamp.valueOf(dish.getModifiedDate()));
+            ps.setDate(6, dish.getModifiedDate());
             // WHERE dish_id
             ps.setInt(7, dish.getDishId());
 

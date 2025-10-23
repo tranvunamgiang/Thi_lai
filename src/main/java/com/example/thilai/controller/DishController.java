@@ -9,6 +9,8 @@ import com.example.thilai.repository.MySqlDishRepository;
 import com.example.thilai.repository.MySqlCategoryRepository;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class DishController extends HttpServlet {
 
     private DishRepository dishRepository;
     private CategoryRepository categoryRepository;
+    private Instant Date;
 
     @Override
     public void init() throws ServletException {
@@ -186,9 +189,9 @@ public class DishController extends HttpServlet {
 
         if (validateAndPopulateDish(request, dish, errors)) {
             // Ngày bắt đầu bán là ngày hiện tại
-            dish.setStartDate(LocalDate.now());
+            dish.setStartDate(java.sql.Date.valueOf(LocalDate.now()));
             // Ngày sửa thông tin là thời điểm hiện tại
-            dish.setModifiedDate(LocalDateTime.now());
+            dish.setModifiedDate(java.sql.Date.valueOf(LocalDate.now()));
             // Trạng thái mặc định là Đang Bán
             dish.setStatus("DANG_BAN");
 
@@ -224,7 +227,7 @@ public class DishController extends HttpServlet {
 
         if (validateAndPopulateDish(request, dish, errors)) {
             // Ngày sửa thông tin là thời điểm hiện tại
-            dish.setModifiedDate(LocalDateTime.now());
+            dish.setModifiedDate(java.sql.Date.valueOf(LocalDate.now()));
 
             // Giữ nguyên trạng thái cũ (Trạng thái được cập nhật qua hàm updateStatus riêng)
             dishRepository.findById(dishId).ifPresent(oldDish -> dish.setStatus(oldDish.getStatus()));

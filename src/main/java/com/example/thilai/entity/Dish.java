@@ -1,6 +1,7 @@
 package com.example.thilai.entity;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Dish {
     private int dishId;
@@ -59,7 +60,7 @@ public class Dish {
         return price;
     }
 
-    public java.sql.Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
